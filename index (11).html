@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8a63e0">
+<title>Shivana’s Trinidad Checklist</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3effc; --card:#ffffff; --ink:#2b1f4a; --muted:#6f6590; --line:#e2d9f5;
+  --accent:#7b4fd8; --accent-ink:#ffffff; --soft:#e9e0fb; --done:#a89cc8;
+  --h1:#b79cf3; --h2:#7d54d6;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#181129; --card:#251b40; --ink:#efe9ff; --muted:#a99ccd; --line:#3a2d5e;
+    --accent:#b79cff; --accent-ink:#1b1033; --soft:#352a58; --done:#7a6ca3;
+    --h1:#5b3fa8; --h2:#3a2575;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 "DM Sans",system-ui,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{background:linear-gradient(150deg,var(--h1),var(--h2));color:#fff;padding:calc(1.4rem + env(safe-area-inset-top)) 1.1rem 1.6rem;border-radius:0 0 26px 26px}
+.head-in{max-width:720px;margin:0 auto}
+h1{font:800 clamp(1.8rem,7.5vw,2.8rem)/1.05 "Fraunces",Georgia,serif;margin:0 0 .45rem;letter-spacing:-.01em}
+header p{margin:0;font-size:.95rem;opacity:.92}
+.sticky{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:env(safe-area-inset-top)}
+.bar-in{max-width:720px;margin:0 auto;padding:.7rem 1.1rem .35rem;display:flex;align-items:center;gap:.8rem}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .3s}
+#count{font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+nav{max-width:720px;margin:0 auto;display:flex;gap:.45rem;overflow-x:auto;padding:.3rem 1.1rem .7rem;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;color:var(--ink);background:var(--soft);text-decoration:none;font-weight:500;font-size:.88rem;padding:.4rem .85rem;border-radius:99px}
+nav a:active{background:var(--accent);color:var(--accent-ink)}
+main{max-width:720px;margin:0 auto;padding:.4rem .9rem 1rem}
+section{scroll-margin-top:7.5rem;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1rem 1rem .9rem;margin-bottom:.9rem}
+h2{font:600 1.3rem/1.2 "Fraunces",Georgia,serif;margin:0 0 .3rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+h2 small{font:500 .85rem "DM Sans",sans-serif;color:var(--muted)}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;align-items:center;gap:.4rem;border-top:1px solid var(--line)}
+li:first-child{border-top:0}
+li label{flex:1;display:flex;gap:.8rem;align-items:flex-start;padding:.7rem 0;min-height:48px;cursor:pointer}
+input[type=checkbox]{appearance:none;flex:none;width:1.65rem;height:1.65rem;margin:0;border:2px solid var(--muted);border-radius:9px;background:transparent;cursor:pointer;display:grid;place-content:center}
+input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent)}
+input[type=checkbox]:checked::after{content:"";width:.42rem;height:.82rem;border:solid var(--accent-ink);border-width:0 3px 3px 0;transform:translateY(-1px) rotate(45deg)}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+li.done span{color:var(--done);text-decoration:line-through}
+.del{flex:none;width:44px;height:44px;border:0;background:none;color:var(--muted);font-size:1.5rem;cursor:pointer}
+.del:active{color:var(--accent)}
+.add{display:flex;gap:.5rem;margin-top:.5rem}
+.add input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:.7rem .85rem}
+.add button,.reset{font:700 .95rem "DM Sans",sans-serif;border:0;border-radius:12px;padding:.7rem 1.1rem;min-height:44px;cursor:pointer}
+.add button{background:var(--accent);color:var(--accent-ink)}
+.note{background:var(--soft);border-radius:18px;padding:.9rem 1rem;margin-bottom:.9rem;font-size:.95rem}
+.note b{font-family:"Fraunces",Georgia,serif;font-size:1.05rem}
+footer{text-align:center;padding:.5rem 1rem 2.5rem}
+.reset{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+.reset:active{color:var(--accent);border-color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="head-in">
+  <h1>Shivana’s Trinidad Checklist</h1>
+  <p>Toronto to Trinidad · 4–5 days · family stay and a wedding</p>
+</div></header>
+<div class="sticky">
+  <div class="bar-in"><div class="bar"><i id="fill"></i></div><span id="count">0 / 0</span></div>
+  <nav id="nav" aria-label="Sections"></nav>
+</div>
+<main id="app"></main>
+<footer><button class="reset" id="reset">Uncheck everything</button></footer>
+
+<script>
+const SECTIONS = [
+  {id:"essentials", title:"Travel essentials", items:[
+    "Passport (check expiry / entry requirements)","Boarding pass and flight details","Travel insurance details",
+    "Family address and contact numbers","Wallet, credit/debit cards & some TTD cash","Driver’s licence (if needed)","Copies of important documents"]},
+  {id:"clothing", title:"Clothing", items:[
+    "5–6 everyday tops","4–5 shorts / skirts","3–4 casual dresses","2 lightweight pants / linen trousers",
+    "Underwear (14 pairs packed — officially covered!) & 3–4 bras","2 sets sleepwear; socks",
+    "Comfortable walking shoes + sandals / flip-flops","Swimsuit, cover-up, light cardigan & travel outfit"]},
+  {id:"wedding", title:"Wedding extras", items:[
+    "Wedding outfit / dress","Wedding shoes + backup comfortable shoes","Wedding purse / clutch, jewellery & accessories",
+    "Undergarments for wedding outfit","Wedding gift / card","Hair / makeup appointments & inspiration photos",
+    "Wedding shoes broken in beforehand","Small clutch emergency kit: safety pins, fashion tape, blister pads & blotting papers"]},
+  {id:"toiletries", title:"Toiletries & beauty", items:[
+    "Toothbrush, toothpaste, deodorant","Shampoo, conditioner, body wash","Face wash, moisturizer, sunscreen (SPF 30+)",
+    "Makeup, brushes and makeup remover","Hairbrush / comb and anti-humidity styling products","Hair tools (if needed; check voltage)",
+    "Razor, feminine hygiene products","Perfume, tweezers, nail file / clippers"]},
+  {id:"health", title:"Health & comfort", items:[
+    "Pain reliever / allergy medication","Stomach medication and basic first aid","Band-Aids, hand sanitizer and tissues",
+    "Insect repellent (essential for evenings!)","Sunglasses, sun hat and reusable water bottle"]},
+  {id:"electronics", title:"Electronics", items:[
+    "Cellphone and charger","AirPods & charging case","Power bank","Charging cables and smartwatch charger",
+    "Camera (if wanted)","Plug adapter if needed (Trinidad uses Type A/B)"]},
+  {id:"carryon", title:"Carry-on & before leaving", items:[
+    "Carry-on: Passport, wallet, travel docs, AirPods, chargers, valuables & 1 spare outfit","Small toiletries within airline liquid limits",
+    "Snacks and empty water bottle for flight","Check in online & confirm baggage allowance",
+    "Confirm airport ride and family pickup in Trinidad","Notify bank if required; check weather forecast"]}
+];
+const SHORT = {essentials:"Essentials", clothing:"Clothing", wedding:"Wedding", toiletries:"Toiletries", health:"Health", electronics:"Electronics", carryon:"Carry-on"};
+const REMINDER = "Keep your passport, valuables, AirPods, and wedding outfit/essentials in your carry-on bag if possible so nothing gets delayed in transit. Have the best time in Trinidad!";
+
+const KEY = "trinidad-checklist-v1";
+let state = {checked:{}, custom:{}};
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) state = s; } catch(e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
+
+const app = document.getElementById("app");
+
+function el(tag, props, ...kids){
+  const n = document.createElement(tag);
+  Object.assign(n, props || {});
+  kids.forEach(k => n.append(k));
+  return n;
+}
+
+function row(id, text, isCustom, sectionId){
+  const cb = el("input", {type:"checkbox", checked:!!state.checked[id]});
+  const li = el("li", {className: cb.checked ? "done" : ""});
+  cb.addEventListener("change", () => {
+    if (cb.checked) state.checked[id] = true; else delete state.checked[id];
+    li.className = cb.checked ? "done" : "";
+    save(); update();
+  });
+  li.append(el("label", {}, cb, el("span", {textContent:text})));
+  if (isCustom) {
+    const del = el("button", {className:"del", textContent:"×", title:"Remove item", ariaLabel:"Remove " + text});
+    del.addEventListener("click", () => {
+      state.custom[sectionId] = state.custom[sectionId].filter(c => c.id !== id);
+      delete state.checked[id];
+      save(); render();
+    });
+    li.append(del);
+  }
+  return li;
+}
+
+function render(){
+  app.replaceChildren();
+  const nav = document.getElementById("nav");
+  nav.replaceChildren();
+  app.append(el("div", {className:"note"}, el("b", {textContent:"Travel reminder. "}), REMINDER));
+  SECTIONS.forEach(sec => {
+    nav.append(el("a", {href:"#" + sec.id, textContent:SHORT[sec.id]}));
+    const ul = el("ul");
+    sec.items.forEach((t, i) => ul.append(row(sec.id + "-" + i, t, false)));
+    (state.custom[sec.id] || []).forEach(c => ul.append(row(c.id, c.text, true, sec.id)));
+    const input = el("input", {type:"text", placeholder:"Add an item", ariaLabel:"Add an item to " + sec.title, maxLength:120});
+    const btn = el("button", {type:"button", textContent:"Add"});
+    const add = () => {
+      const text = input.value.trim();
+      if (!text) return;
+      (state.custom[sec.id] = state.custom[sec.id] || []).push({id:"c-" + Date.now() + Math.random().toString(36).slice(2,6), text});
+      save(); render();
+    };
+    btn.addEventListener("click", add);
+    input.addEventListener("keydown", e => { if (e.key === "Enter") add(); });
+    const h = el("h2", {}, sec.title, el("small", {id:"n-" + sec.id}));
+    app.append(el("section", {id:sec.id}, h, ul, el("div", {className:"add"}, input, btn)));
+  });
+  update();
+}
+
+function update(){
+  let total = 0, done = 0;
+  SECTIONS.forEach(sec => {
+    const boxes = document.querySelectorAll("#" + sec.id + " input[type=checkbox]");
+    const d = [...boxes].filter(b => b.checked).length;
+    document.getElementById("n-" + sec.id).textContent = d + " / " + boxes.length;
+    total += boxes.length; done += d;
+  });
+  document.getElementById("fill").style.width = (total ? done / total * 100 : 0) + "%";
+  document.getElementById("count").textContent = done + " / " + total + " packed";
+}
+
+document.getElementById("reset").addEventListener("click", () => {
+  if (confirm("Uncheck everything? Your added items will stay.")) { state.checked = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
